@@ -17,10 +17,30 @@ public class SQLRequestQuery {
 	private static Connection db;
 
 	/**
+	 * Opens a connection to the SQL database and makes a request for all clients.<br>
+	 * Returns a Clients object with an ArrayList that contains all clients.
+	 * @return Clients
+	 */
+	public static Clients getClients() {
+		Clients clients = null;			// The Clients object we want to return back to the caller.
+		String query = null;			// The SQL query we want to execute 
+
+		// Prepare the query to be sent to the database
+		query = "SELECT * FROM clients";
+
+		// Connect to the database and attempt to execute the statement and query.
+		ResultSet results = fetchResults(query);
+
+		// Handle the results with the getClients Reesult handler
+		clients = getClientsHandler(results);
+		return clients;
+	}	
+	
+	/**
 	 * Opens a connection to the SQL database and makes a request for clients.<br>
 	 * Returns a Clients object with an ArrayList that contains all clients whose number matched the parameter.
 	 * @param phoneNumber
-	 * @return
+	 * @return Clients
 	 */
 	public static Clients getClients(String phoneNumber) {
 		Clients clients = null;			// The Clients object we want to return back to the caller.
@@ -44,7 +64,7 @@ public class SQLRequestQuery {
 	 * @param result
 	 * @return a Clients object
 	 */
-	public static Clients getClientsHandler(ResultSet result) {
+	private static Clients getClientsHandler(ResultSet result) {
 		Clients clientResults = new Clients();
 		try {
 			while(result.next()) {
@@ -123,7 +143,7 @@ public class SQLRequestQuery {
 	}
 
 	// This Date object is a java.sql.Date object
-	public static Date getTimeStamp() {
+	private static Date getTimeStamp() {
 		Calendar calendar = Calendar.getInstance();
 		return new Date(calendar.getTime().getTime());
 	}
