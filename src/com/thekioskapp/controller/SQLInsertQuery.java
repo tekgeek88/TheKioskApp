@@ -11,28 +11,36 @@ public class SQLInsertQuery {
 
 	private static Connection db;
 
-	public static boolean insertNewClient(String nameFirst, String nameLast, String numberCell) {
+	/**
+	 * Adds a new client to the SQL database. Takes a String for all three parameters.<br>
+	 * Returns true or false to indicate a successful addition to the database.
+	 * @param nameFirst
+	 * @param nameLast
+	 * @param numberCell
+	 * @return boolean
+	 */
+	public static boolean insertNewClient(String nameFirst, String nameLast, String phoneNumber) {
 		makeConnection();
 		Date dateCreated = getTimeStamp();
 		String query;
 		PreparedStatement preparedStmt;
 		
 		// The MySql insert statement
-		query = "INSERT INTO clients (nameFirst, nameLast, numberCell, dateCreated)"
+		query = "INSERT INTO clients (nameFirst, nameLast, phoneNumber, dateCreated)"
 				+ "VALUES (?, ?, ?, ?)";
-		//('Carlos', 'Albright',2535909132, CURDATE())";
-		// create the mysql insert preparedstatement
 
 		try {
 			preparedStmt = db.prepareStatement(query);
 			preparedStmt.setString(1, nameFirst);
 			preparedStmt.setString(2, nameLast);
-			preparedStmt.setString(3, numberCell);
+			preparedStmt.setString(3, phoneNumber);
 			preparedStmt.setDate(4, dateCreated);
 			// execute the statement
 			preparedStmt.execute();
 			// Close the connection
+			preparedStmt.close();
 			db.close();
+			db = null;
 			return true;
 		}
 		catch (SQLException ex){
@@ -44,7 +52,7 @@ public class SQLInsertQuery {
 	}	
 
 	/**
-	 * Establishs a connection to the SQL database an se
+	 * Establishs a connection to the SQL database.
 	 * @return
 	 */
 	private static boolean makeConnection() {

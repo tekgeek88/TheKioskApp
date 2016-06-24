@@ -130,8 +130,8 @@ public class Client {
 	}
 	
 	@Override
-	public String toString() {
-		return "id: " + getId() + " " + getNameFirst() + " " + getNameLast() + " " + getPhoneNumber();
+	public String toString() throws NullPointerException {
+		return "id: " + id + " " + nameFirst + " " + nameLast + " " + phoneNumber;
 	}
 
 
