@@ -1,10 +1,8 @@
-package com.thekioskapp.main;
+package com.thekioskapp.model;
 
 import com.thekioskapp.controller.SQLDeleteQuery;
 import com.thekioskapp.controller.SQLInsertQuery;
 import com.thekioskapp.controller.SQLRequestQuery;
-import com.thekioskapp.model.Client;
-import com.thekioskapp.model.Clients;
 
 public class Test {
 
@@ -59,8 +57,5 @@ public class Test {
 	public static void getClientsFromDatabase(){
 		SQLRequestQuery.getClients("2222222222");
 	}
-	
-
-	
 	
 }

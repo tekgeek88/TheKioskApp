@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.VBox?>
+<?scenebuilder-stylesheet application.css?>
+
+<VBox fx:id="anchor" prefHeight="310.0" prefWidth="493.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thekioskapp.view.controller.DesktopApp">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#addCustomerMenu" text="New Customer...">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#removeCustomerMenu" text="Remove Customer..." />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+              <MenuItem mnemonicParsing="false" onAction="#exitAction" text="Exit" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#editCustomerMenu" text="Customer..." />
+                  <MenuItem mnemonicParsing="false" onAction="#preferencesMenu" text="Preferences..." />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Reports">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#busyTimesMenu" text="Busy Times/Days" />
+                  <MenuItem mnemonicParsing="false" onAction="#waitTimesHistogramMenu" text="Wait Times Histogram" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#helpMenu" text="Help..." />
+              <MenuItem mnemonicParsing="false" onAction="#aboutMenu" text="About..." />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <VBox prefHeight="200.0" prefWidth="311.0">
+         <children>
+            <Accordion>
+              <panes>
+                <TitledPane animated="false" text="Current Customers">
+                     <content>
+                        <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
+                           <content>
+                              <TableView prefHeight="200.0" prefWidth="200.0">
+                                <columns>
+                                  <TableColumn prefWidth="90.0" text="First Name" />
+                                  <TableColumn prefWidth="150.0" text="Last Name" />
+                                    <TableColumn minWidth="0.0" prefWidth="137.0" text="Employee" />
+                                    <TableColumn prefWidth="100.0" text="Elapsed Time" />
+                                </columns>
+                              </TableView>
+                           </content>
+                        </ScrollPane>
+                     </content>
+                </TitledPane>
+                  <TitledPane animated="false" text="Waiting Customers">
+                     <content>
+                        <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
+                           <content>
+                              <TableView prefHeight="200.0" prefWidth="200.0">
+                                 <columns>
+                                    <TableColumn prefWidth="90.0" text="First Name" />
+                                    <TableColumn prefWidth="187.0" text="Last Name" />
+                                    <TableColumn prefWidth="100.0" text="Time In" />
+                                    <TableColumn prefWidth="100.0" text="Elapsed Time" />
+                                 </columns>
+                              </TableView>
+                           </content>
+                        </ScrollPane>
+                     </content>
+                  </TitledPane>
+                  <TitledPane animated="false" text="Completed Customers">
+                     <content>
+                        <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
+                           <content>
+                              <TableView prefHeight="200.0" prefWidth="200.0">
+                                 <columns>
+                                    <TableColumn prefWidth="90.0" text="First Name" />
+                                    <TableColumn prefWidth="187.0" text="Last Name" />
+                                    <TableColumn prefWidth="100.0" text="Time Out" />
+                                    <TableColumn prefWidth="100.0" text="Total Time" />
+                                 </columns>
+                              </TableView>
+                           </content>
+                        </ScrollPane>
+                     </content>
+                  </TitledPane>
+              </panes>
+            </Accordion>
+         </children>
+      </VBox>
+   </children>
+</VBox>

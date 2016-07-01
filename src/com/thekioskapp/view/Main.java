@@ -6,20 +6,27 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+/**
+ * Launches the application.
+ * @author Joshua Neighbarger
+ */
 public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("layout.fxml"));
-			Scene scene = new Scene(root,400,300); // Size is arbitrary
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			final Parent root = FXMLLoader.load(getClass().getResource("assets/DesktopApp.fxml"));
 			primaryStage.setTitle("TheKioskApp");
-			primaryStage.setScene(scene);
+			primaryStage.setScene(new Scene(root));
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public void stop() {
+		System.out.println("Closing application...");
 	}
 	
 	/**
