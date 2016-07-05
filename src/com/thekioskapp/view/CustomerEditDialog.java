@@ -1,10 +1,12 @@
-package com.thekioskapp.view.controller;
+package com.thekioskapp.view;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
-import com.thekioskapp.model.Customer;
+import com.thekioskapp.util.CustomerManager;
+import com.thekioskapp.view.components.CustomerEntry;
 
-import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -25,22 +27,21 @@ public class CustomerEditDialog {
 	@FXML private TextField noteField;
 	@FXML private ListView<String> noteView;
 	
-	private Customer customer;
-	private String firstName;
-	private String lastName;
-	private ObservableList<String> noteList;
+	private CustomerEntry customer;
+	private ArrayList<String> noteList;
 	
 	public void initialize() {
-		setCustomer(new Customer());
-		noteView.setCellFactory(TextFieldListCell.forListView());	
+		noteView.setCellFactory(TextFieldListCell.forListView());
+		noteList = new ArrayList<>();
 	}
 	
-	public void setCustomer(final Customer customer) {
+	public void setCustomer(final CustomerEntry customer) {
 		Objects.requireNonNull(customer);
 		this.customer = customer;
-		firstName = customer.getFirstName(); 
-		lastName = customer.getLastName();
+		final String firstName = customer.getFirstName(); 
+		final String lastName = customer.getLastName();
 		noteList = customer.getNotes();
+		noteView.setItems(FXCollections.observableArrayList(noteList));
 		
 		if (firstName != null) {
 			firstNameField.setText(firstName);
@@ -49,13 +50,13 @@ public class CustomerEditDialog {
 			lastNameField.setText(lastName);
 		}
 		if (noteList != null && !noteList.isEmpty()) {
-			noteView.setItems(noteList);
+			noteView.setItems(FXCollections.observableArrayList(noteList));
 		}
 	}
 	
 	public void refreshNoteView() {
 		noteView.setItems(null);
-		noteView.setItems(noteList);
+		noteView.setItems(FXCollections.observableArrayList(noteList));
 	}
 	
 	public void closeStage() {
@@ -86,10 +87,14 @@ public class CustomerEditDialog {
 	
 	@FXML
 	private void handleOkayAction() {
-		customer.setFirstName(firstName);
-		customer.setLastName(lastName);
-		customer.setNotes(noteList);
-		System.out.println("Add customer to database: not implemented");
+		if (customer == null) {
+			CustomerManager.addCustomer(new CustomerEntry(firstNameField.getText(), 
+					lastNameField.getText(), noteList));
+		} else {
+			customer.setFirstName(firstNameField.getText());
+			customer.setLastName(lastNameField.getText());
+			customer.setNotes(noteList);
+		}
 		closeStage();
 	}
 

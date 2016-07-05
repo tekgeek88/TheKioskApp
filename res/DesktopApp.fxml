@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?scenebuilder-stylesheet application.css?>
 
-<VBox fx:id="anchor" prefHeight="310.0" prefWidth="493.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thekioskapp.view.controller.DesktopApp">
+<VBox fx:id="anchor" prefHeight="310.0" prefWidth="493.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thekioskapp.view.Main">
    <children>
       <MenuBar>
         <menus>
@@ -56,12 +56,12 @@
                      <content>
                         <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
                            <content>
-                              <TableView prefHeight="200.0" prefWidth="200.0">
+                              <TableView fx:id="completedTable" editable="true" onKeyPressed="#handleKeyPressed" prefHeight="200.0" prefWidth="200.0">
                                 <columns>
-                                  <TableColumn prefWidth="90.0" text="First Name" />
-                                  <TableColumn prefWidth="150.0" text="Last Name" />
-                                    <TableColumn minWidth="0.0" prefWidth="137.0" text="Employee" />
-                                    <TableColumn prefWidth="100.0" text="Elapsed Time" />
+                                    <TableColumn fx:id="currentFirstName" prefWidth="90.0" text="First Name" />
+                                    <TableColumn fx:id="currentLastName" prefWidth="150.0" text="Last Name" />
+                                    <TableColumn fx:id="currentEmployee" minWidth="0.0" prefWidth="137.0" text="Employee" />
+                                    <TableColumn fx:id="currentElapsedTime" prefWidth="100.0" text="Elapsed Time" />
                                 </columns>
                               </TableView>
                            </content>
@@ -72,12 +72,12 @@
                      <content>
                         <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
                            <content>
-                              <TableView prefHeight="200.0" prefWidth="200.0">
+                              <TableView fx:id="waitingTable" onKeyPressed="#handleKeyPressed" prefHeight="200.0" prefWidth="200.0">
                                  <columns>
-                                    <TableColumn prefWidth="90.0" text="First Name" />
-                                    <TableColumn prefWidth="187.0" text="Last Name" />
-                                    <TableColumn prefWidth="100.0" text="Time In" />
-                                    <TableColumn prefWidth="100.0" text="Elapsed Time" />
+                                    <TableColumn fx:id="waitingFirstName" prefWidth="90.0" text="First Name" />
+                                    <TableColumn fx:id="waitingLastName" prefWidth="187.0" text="Last Name" />
+                                    <TableColumn fx:id="waitingTimeIn" prefWidth="100.0" text="Time In" />
+                                    <TableColumn fx:id="waitingElapsedTime" prefWidth="100.0" text="Elapsed Time" />
                                  </columns>
                               </TableView>
                            </content>
@@ -88,12 +88,12 @@
                      <content>
                         <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
                            <content>
-                              <TableView prefHeight="200.0" prefWidth="200.0">
+                              <TableView fx:id="currentTable" onKeyPressed="#handleKeyPressed" prefHeight="200.0" prefWidth="200.0">
                                  <columns>
-                                    <TableColumn prefWidth="90.0" text="First Name" />
-                                    <TableColumn prefWidth="187.0" text="Last Name" />
-                                    <TableColumn prefWidth="100.0" text="Time Out" />
-                                    <TableColumn prefWidth="100.0" text="Total Time" />
+                                    <TableColumn fx:id="completedFirstName" prefWidth="90.0" text="First Name" />
+                                    <TableColumn fx:id="completedLastName" prefWidth="187.0" text="Last Name" />
+                                    <TableColumn fx:id="completedTimeOut" prefWidth="100.0" text="Time Out" />
+                                    <TableColumn fx:id="completedTotalTime" prefWidth="100.0" text="Total Time" />
                                  </columns>
                               </TableView>
                            </content>
